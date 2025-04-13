@@ -1,25 +1,58 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+import { Hero } from "@/components/hero";
+import "../styles/global.css";
+import background from "../assets/background.svg";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro + TailwindCSS</title>
+  </head>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
+  <body class="light" id="container" class="relative">
+    <img id="background" src={background.src} alt="" fetchpriority="high" />
+    <div class="w-full flex items-center justify-between p-6 absolute">
+      <p class="text-4xl font-medium">vistri.</p>
+      <div class="flex gap-4">
+        <a
+          class="text-muted-foreground cursor-pointer hover:text-foreground"
+          href="/privacy-policy"
+        >
+          Privacy policy
+        </a>
+        <a
+          class="text-muted-foreground cursor-pointer hover:text-foreground"
+          href="/terms-of-service"
+        >
+          Terms of service
+        </a>
+      </div>
+    </div>
+    <Hero />
+  </body>
 </html>
+
+<style>
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(100px);
+  }
+
+  #container {
+    font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+      Arial, sans-serif;
+    height: 100%;
+  }
+</style>
